@@ -5,16 +5,32 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueDriverDashboard", "ValueDriverDashboard.csproj", "{39344A15-D67A-46E7-9644-838A1C78DD42}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgarCacheHelper", "..\EdgarCacheHelper\EdgarCacheHelper.csproj", "{CCB86013-4E87-4EF4-A4CB-C320E314534E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|Any CPU.Build.0 = Debug|x64
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|x64.ActiveCfg = Debug|x64
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Debug|x64.Build.0 = Debug|x64
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.ActiveCfg = Debug|x64
+		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.Build.0 = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|Any CPU.Build.0 = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|x64.ActiveCfg = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|x64.Build.0 = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|x64.ActiveCfg = Debug|x64
+		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|x64.Build.0 = Debug|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
