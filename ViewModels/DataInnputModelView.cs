@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ValueDriverDashboard.Models;
 using ValueDriverDashboard.Commands;
-
+using System.Windows;
 
 namespace ValueDriverDashboard.ViewModels
 {
-    public class DataInputModelView
+    public class DataInputModelView : ViewModelBase
     {
         private DataInput _DataInput;
         private StockPriceViewModel _StockPriceSeriesView;
@@ -23,6 +23,7 @@ namespace ValueDriverDashboard.ViewModels
 
         public DataInput DataInput { get { return _DataInput; } }
         public ICommand UpdateCommand { get; set; }
+
         public bool CanUpdate
         {
             get
@@ -32,9 +33,14 @@ namespace ValueDriverDashboard.ViewModels
                     return false;
                 }
                 else if (String.IsNullOrEmpty(_DataInput.Ticker) || _DataInput.EndDate== null || _DataInput.EndDate== null)
+                {
+                       
                     return false;
+                }
+                    
                 else
                 {
+                    
                     return true;
                 }
                     

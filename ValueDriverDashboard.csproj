@@ -89,33 +89,17 @@
     <Compile Include="Components\StockPriceDash.xaml.cs">
       <DependentUpon>StockPriceDash.xaml</DependentUpon>
     </Compile>
-    <Page Include="Controls\DataSelect.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="DashboardElements\StockPriceDash.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControlEvents\GetDataEventArg.cs" />
     <Compile Include="Controls\CustomDatePickers.cs" />
-    <Compile Include="Controls\DataSelect.xaml.cs">
-      <DependentUpon>DataSelect.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="DashboardElements\StockPriceDash.xaml.cs">
-      <DependentUpon>StockPriceDash.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Compile>
     <Page Include="Components\DataInput.xaml">
       <SubType>Designer</SubType>

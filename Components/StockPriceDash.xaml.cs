@@ -10,7 +10,6 @@ using System.Globalization;
 using Yahoo.Finance;
 using ValueDriverDashboard.ViewModels;
 using System.Linq;
-using ValueDriverDashboard.ControlEvents;
 
 namespace ValueDriverDashboard.Components
 {
