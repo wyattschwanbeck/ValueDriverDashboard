@@ -18,6 +18,7 @@ namespace ValueDriverDashboard.Models
         public SeriesCollection StockChartSeriesCollection { get; }
 
         private HistoricalDataProvider yahooDl;
+        public Func<double, string> StockYFormatter { get { return _stockYFormatter; } }
         //private HistoricalDataProvider yahooDl;
         public StockPriceSeries()
         {
@@ -43,6 +44,7 @@ namespace ValueDriverDashboard.Models
         public async void UpdateChart(DataInput dataInput)
         {
             StockChartSeriesCollection.Clear();
+            StockChartLabels.Clear();
             await yahooDl.DownloadHistoricalDataAsync(dataInput.Ticker, (DateTime)dataInput.StartDate, (DateTime)dataInput.EndDate);
             bool newTicker = true;
             int latestIndex = 1;
@@ -71,6 +73,7 @@ namespace ValueDriverDashboard.Models
 
             for (int i = 0; i < yahooDl.HistoricalData.Length; i++)
             {
+                this.StockChartLabels.Add(yahooDl.HistoricalData[i].Date.ToString("MM/dd/yy"));
                 StockChartSeriesCollection[latestIndex - 1].Values.Add((double)yahooDl.HistoricalData[i].AdjustedClose);
             }
             OnPropertyChanged("StockChartSeriesCollection");
