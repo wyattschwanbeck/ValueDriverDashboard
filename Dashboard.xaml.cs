@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ValueDriverDashboard.ViewModels;
 
 namespace ValueDriverDashboard
 {
@@ -19,10 +20,20 @@ namespace ValueDriverDashboard
     /// </summary>
     public partial class Dashboard : Window
     {
+        public StockPriceViewModel StockPriceViewModel { get; set; }
+        public DataInputModelView DataInputModelView { get; set; }
+        
         public Dashboard()
         {
             InitializeComponent();
-            this.dataSelector.getDataEvent += this.stockPriceChart.OnDataInputAsync;
+            
+            StockPriceViewModel = new StockPriceViewModel();
+            DataInputModelView = new DataInputModelView(StockPriceViewModel);
+            this.stockPriceChart.DataContext = StockPriceViewModel;
+            this.dataSelector.DataContext = DataInputModelView;
+            DataContext = new MainViewModel(DataInputModelView, StockPriceViewModel);
+            
+            
         }
     }
 }

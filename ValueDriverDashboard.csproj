@@ -75,6 +75,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\GetStockPriceData.cs" />
+    <Compile Include="Commands\UpdateDataInput.cs" />
+    <Compile Include="Models\DataInput.cs" />
+    <Compile Include="Models\StockPriceSeries.cs" />
+    <Compile Include="Models\ViewModelBase.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\StockPriceViewModel.cs" />
+    <Compile Include="ViewModels\DataInnputModelView.cs" />
+    <Compile Include="Components\DataInput.xaml.cs">
+      <DependentUpon>DataInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\StockPriceDash.xaml.cs">
+      <DependentUpon>StockPriceDash.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\DataSelect.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +106,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlEvents\GetDataEventArg.cs" />
+    <Compile Include="Controls\CustomDatePickers.cs" />
     <Compile Include="Controls\DataSelect.xaml.cs">
       <DependentUpon>DataSelect.xaml</DependentUpon>
     </Compile>
@@ -102,6 +117,14 @@
       <DependentUpon>StockPriceDash.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Components\DataInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\StockPriceDash.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -140,5 +163,6 @@
       <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

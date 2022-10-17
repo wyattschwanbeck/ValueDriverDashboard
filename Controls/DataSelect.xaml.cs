@@ -33,30 +33,52 @@ namespace ValueDriverDashboard.Controls
 
         private void startDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CheckButton();
         }
 
         private void endDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            CheckButton();
         }
-        private async void btnGetStock_Click(object sender, System.Windows.RoutedEventArgs e)
+
+        private void CheckButton()
         {
-            //OnGetDataButtonClicked();
-            if (this.startDatePicker != null && this.endDatePicker != null &&
+            if (this.startDatePicker != null && this.endDatePicker != null && this.txtTickerInput!=null &&
                this.txtTickerInput.Text.Length > 0 &&
                    this.startDatePicker.SelectedDate < this.endDatePicker.SelectedDate)
             {
+                this.btnGetStock.IsEnabled = true;
+            }
+            else if(this.txtTickerInput != null)
+            {
+                this.btnGetStock.IsEnabled = false; 
+            }
+        }
+
+        private async void btnGetStock_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //OnGetDataButtonClicked();
+
                 ControlEvents.GetDataEventArg dataEvent = new ControlEvents.GetDataEventArg();
                 dataEvent.endDate = (DateTime)this.endDatePicker.SelectedDate;
                 dataEvent.startDate = (DateTime)this.startDatePicker.SelectedDate;
                 dataEvent.ticker = this.txtTickerInput.Text;
                 getDataEvent(this, dataEvent);
-            }
+           
             
         }
         public delegate GetDataEventArg getDataDelegate();
 
-
+        private void txtTickerInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            this.CheckButton();
+            if (this.txtTickerInput.Text != "")
+            {
+                this.txtTickerLabel.Opacity = 0;
+            } else
+            {
+                this.txtTickerLabel.Opacity = 100;
+            }
+        }
     }
 }
