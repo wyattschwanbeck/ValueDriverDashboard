@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ValueDriverDashboard.DashboardElements"
-        xmlns:controls="clr-namespace:ValueDriverDashboard.Controls"
+        xmlns:components="clr-namespace:ValueDriverDashboard.Components"
         mc:Ignorable="d"
         Title="Dashboard" Height="450" Width="800">
     <Grid>
@@ -19,9 +18,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <local:StockDashboard Grid.Row="0" Grid.Column="0" x:Name="stockPriceChart"/>
+        <components:StockDashboardView DataContext="{Binding StockPriceViewModel}" Grid.Row="0" Grid.Column="0" x:Name="stockPriceChart" />
         <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowsPreview="True" Width="5"/>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" ShowsPreview="True" Height="5"/>
-        <controls:DataSelect Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="dataSelector" />
+        <components:DataInputControl DataContext="{Binding DataInputModelView}" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="dataSelector" />
     </Grid>
 </Window>
