@@ -6,20 +6,25 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ValueDriverDashboard.Models;
 using ValueDriverDashboard.Commands;
-using System.Windows;
+using ValueDriverDashboard.Events;
 
 namespace ValueDriverDashboard.ViewModels
 {
-    public class DataInputModelView : ViewModelBase
+    public class DataInputViewModel : ViewModelBase
     {
         private DataInput _DataInput;
-        private StockPriceViewModel _StockPriceSeriesView;
-        public DataInputModelView(StockPriceViewModel stockPriceViewModel)
+        //private StockPriceViewModel _StockPriceSeriesView;
+
+        
+        public DataInputViewModel()
         {
             _DataInput = new DataInput(null, null, DateTime.Today);
             UpdateCommand = new UpdateDataInput(this);
-            _StockPriceSeriesView = stockPriceViewModel;
+
+
         }
+
+        
 
         public DataInput DataInput { get { return _DataInput; } }
         public ICommand UpdateCommand { get; set; }
@@ -46,12 +51,24 @@ namespace ValueDriverDashboard.ViewModels
                     
             }
         }
+        public delegate void DataInputSubmittedEventHandler(object source, Events.DataInputEventArgs args);
+        public event DataInputSubmittedEventHandler DataInputSubmitted;
 
-
-        public void UpdateViews()
+        protected virtual void OnDataInputSubmitted()
         {
-            _StockPriceSeriesView.UpdateChart(_DataInput);
+            if (DataInputSubmitted != null)
+            {
+                DataInputEventArgs dataInputArgs = new DataInputEventArgs { EndDate = DataInput.EndDate, StartDate = DataInput.StartDate, Ticker = DataInput.Ticker };
+                DataInputSubmitted(this, dataInputArgs);
+            }
+            
+
         }
+        public void Submitted()
+        {
+            OnDataInputSubmitted();
+        }
+
         
     }
 }

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Yahoo.Finance;
-
+using ValueDriverDashboard.Events;
 namespace ValueDriverDashboard.Models
 {
     public class StockPriceSeries : ViewModelBase
@@ -41,11 +41,11 @@ namespace ValueDriverDashboard.Models
         }
 
 
-        public async void UpdateChart(DataInput dataInput)
+        public async void UpdateChart(DataInputEventArgs dataInput)
         {
             StockChartSeriesCollection.Clear();
             StockChartLabels.Clear();
-            await yahooDl.DownloadHistoricalDataAsync(dataInput.Ticker, (DateTime)dataInput.StartDate, (DateTime)dataInput.EndDate);
+            await yahooDl.DownloadHistoricalDataAsync(dataInput.Ticker, dataInput.StartDate, dataInput.EndDate);
             bool newTicker = true;
             int latestIndex = 1;
             for (int i = 0; i < StockChartSeriesCollection.Count; i++)

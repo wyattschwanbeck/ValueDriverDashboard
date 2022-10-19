@@ -21,17 +21,21 @@ namespace ValueDriverDashboard
     public partial class Dashboard : Window
     {
         public StockPriceViewModel StockPriceViewModel { get; set; }
-        public DataInputModelView DataInputModelView { get; set; }
+        public DataInputViewModel DataInputViewModel { get; set; }
+        public TotalAssetsViewModel TotalAssetsViewModel { get; set; }
         
         public Dashboard()
         {
             InitializeComponent();
             
             StockPriceViewModel = new StockPriceViewModel();
-            DataInputModelView = new DataInputModelView(StockPriceViewModel);
+            DataInputViewModel = new DataInputViewModel();
+            TotalAssetsViewModel = new TotalAssetsViewModel();
+
             this.stockPriceChart.DataContext = StockPriceViewModel;
-            this.dataSelector.DataContext = DataInputModelView;
-            DataContext = new MainViewModel(DataInputModelView, StockPriceViewModel);
+            this.dataSelector.DataContext = DataInputViewModel;
+            this.totalAssetsChart.DataContext = TotalAssetsViewModel;
+            DataContext = new MainViewModel(DataInputViewModel, StockPriceViewModel, TotalAssetsViewModel);
             
             
         }

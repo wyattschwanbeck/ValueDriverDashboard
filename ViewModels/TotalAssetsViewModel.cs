@@ -13,18 +13,18 @@ using ValueDriverDashboard.Events;
 
 namespace ValueDriverDashboard.ViewModels
 {
-    public class StockPriceViewModel : ViewModelBase
+    public class TotalAssetsViewModel : ViewModelBase
     {
-        public StockPriceSeries _StockPriceSeries { get; set; }
-        public StockPriceSeries StockPriceSeries { get { return _StockPriceSeries; } }
+        public TotalAssetsSeries _AssetsSeries { get; set; }
+        public TotalAssetsSeries AssetsSeries { get { return _AssetsSeries; } }
         //private DataInputViewModel _DataInputView;
-        public StockPriceViewModel()
+        public TotalAssetsViewModel()
         {
 
-            _StockPriceSeries = new StockPriceSeries();
+            _AssetsSeries = new TotalAssetsSeries();
 
             //this._DataInputView = dataInput;
-            yahooDl = new HistoricalDataProvider();
+            //yahooDl = new HistoricalDataProvider();
         }
 
         //public DataInputViewModel DataInputView { get { return _DataInputView; } }
@@ -42,7 +42,7 @@ namespace ValueDriverDashboard.ViewModels
         }
         public void UpdateChart(DataInputEventArgs dataInput)
         {
-            _StockPriceSeries.UpdateChart(dataInput);
+            _AssetsSeries.UpdateChart(dataInput);
         }
 
     }

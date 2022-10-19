@@ -2,19 +2,25 @@
 namespace ValueDriverDashboard.Commands
 {
     using System.Windows.Input;
+    using ValueDriverDashboard.Events;
     using ValueDriverDashboard.ViewModels;
 
-    internal class UpdateDataInput : ICommand
+    public class UpdateDataInput :ICommand
     {
         /// <summary>
         /// Initializes a new instance of the UpdateCustomerCommand class.
         /// </summary>
-        public UpdateDataInput(DataInputModelView viewModel)
+        //private StockPriceViewModel _stockPriceViewModel;
+
+        
+
+        public UpdateDataInput(DataInputViewModel viewModel)
         {
-            _ViewModel = viewModel;
+            //_stockPriceViewModel = stockPriceViewModel;
+            _dataInputModel = viewModel;
         }
 
-        private DataInputModelView _ViewModel;
+        private DataInputViewModel _dataInputModel;
 
         public event System.EventHandler CanExecuteChanged
         {
@@ -31,12 +37,16 @@ namespace ValueDriverDashboard.Commands
 
         public bool CanExecute(object parameter)
         {
-            return _ViewModel.CanUpdate;
+            return _dataInputModel.CanUpdate;
         }
 
         public void Execute(object parameter)
         {
-            _ViewModel.UpdateViews();
+            _dataInputModel.Submitted();
+            //_stockPriceViewModel.UpdateChart(_dataInputModel.DataInput);
         }
+
+
+
     }
 }

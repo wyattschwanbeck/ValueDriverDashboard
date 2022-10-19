@@ -13,9 +13,9 @@ using System.Linq;
 
 namespace ValueDriverDashboard.Components
 {
-    public partial class StockDashboardView : UserControl
+    public partial class AssetsTotal : UserControl
     {
-        public StockDashboardView()
+        public AssetsTotal()
         {
             InitializeComponent();
 

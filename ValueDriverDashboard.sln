@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueDriverDashboard", "ValueDriverDashboard.csproj", "{39344A15-D67A-46E7-9644-838A1C78DD42}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgarCacheHelper", "..\EdgarCacheHelper\EdgarCacheHelper.csproj", "{CCB86013-4E87-4EF4-A4CB-C320E314534E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgarCacheFramework", "..\EdgarCacheFramework\EdgarCacheFramework.csproj", "{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +23,14 @@ Global
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.Build.0 = Debug|x64
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.ActiveCfg = Debug|x64
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.Build.0 = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|Any CPU.ActiveCfg = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|Any CPU.Build.0 = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|x64.ActiveCfg = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Debug|x64.Build.0 = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|x64.ActiveCfg = Debug|x64
-		{CCB86013-4E87-4EF4-A4CB-C320E314534E}.Release|x64.Build.0 = Debug|x64
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

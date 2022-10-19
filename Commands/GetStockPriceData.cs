@@ -6,7 +6,7 @@ namespace ValueDriverDashboard.Commands
     using ValueDriverDashboard.ViewModels;
     using Yahoo.Finance;
 
-    internal class GetStockPriceData : ICommand
+    internal class GetStockPriceData : CommandBase
     {
         /// <summary>
         /// Initializes a new instance of the GetStockPriceData class which handles retreival from cached db and yahoo finance.
@@ -18,7 +18,7 @@ namespace ValueDriverDashboard.Commands
         }
         
         private StockPriceViewModel _ViewModel;
-        private DataInputModelView _DataInput;
+        private DataInputViewModel _DataInput;
 
         public event System.EventHandler CanExecuteChanged
         {
@@ -33,14 +33,16 @@ namespace ValueDriverDashboard.Commands
         }
         //public event GetDataEventArgs 
 
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             return _ViewModel.CanUpdate;
+            //return true;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
-            _ViewModel.UpdateChart(_DataInput.DataInput);
+
         }
+
     }
 }

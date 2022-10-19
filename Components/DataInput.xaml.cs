@@ -24,7 +24,7 @@ namespace ValueDriverDashboard.Components
         public DataInputControl()
         {
             InitializeComponent();
-            //DataContext = new DataInputModelView();
+            //DataContext = new DataInputViewModel();
 
         }
     }

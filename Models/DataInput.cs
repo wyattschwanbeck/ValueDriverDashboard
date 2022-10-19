@@ -27,7 +27,7 @@ namespace ValueDriverDashboard.Models
         public DataInput(string ticker, DateTime? startDate, DateTime? endDate)
         {
             this._ticker = ticker;
-            this._startDate = startDate;
+            this._startDate = DateTime.Today.AddDays(-20.0);
             this._endDate = endDate;
 
         }

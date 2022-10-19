@@ -10,25 +10,39 @@ using Yahoo.Finance;
 using LiveCharts.Wpf;
 using LiveCharts;
 
+using ValueDriverDashboard.Events;
 
 namespace ValueDriverDashboard.ViewModels
 {
     public class MainViewModel
     {
-        private DataInputModelView _DataInput;
-        private StockPriceViewModel _StockPriceSeries;
+        private DataInputViewModel _DataInput;
+        private StockPriceViewModel _StockPriceViewModel;
+        private TotalAssetsViewModel _TotalAssetsViewModel;
 
-        public MainViewModel(DataInputModelView dataInput, StockPriceViewModel stockPriceSeriesView)
+        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView)
         {
             _DataInput = dataInput;
-            _StockPriceSeries = stockPriceSeriesView;
-            UpdateCommand = dataInput.UpdateCommand;
-            //dataInput.UpdateCommand = new GetStockPriceData(this);
+            _StockPriceViewModel = stockPriceSeriesView;
+            _TotalAssetsViewModel = assetsView;
+            //Subscribe to data input submission events
+            _DataInput.DataInputSubmitted += OnDataInputSubmitted;
+            
+            
+        }
+        public void OnDataInputSubmitted(object source, DataInputEventArgs e)
+        {
+            //In the event of data inputs being submitted, update these things
+            _StockPriceViewModel.UpdateChart(e);
+            _TotalAssetsViewModel.UpdateChart(e);
+
+            
         }
 
-        public DataInputModelView DataInput { get { return _DataInput; } }
-        public StockPriceViewModel StockPriceSeries { get { return _StockPriceSeries; } }
-        public ICommand UpdateCommand { get; private set; }
+        public DataInputViewModel DataInput { get { return _DataInput; } }
+        public StockPriceViewModel StockPriceSeries { get { return _StockPriceViewModel; } }
+
+
         public bool CanUpdate
         {
             get
@@ -48,11 +62,6 @@ namespace ValueDriverDashboard.ViewModels
             }
         }
 
-
-        public void SaveChanges()
-        {
-
-        }
 
     }
 }
