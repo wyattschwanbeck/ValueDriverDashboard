@@ -5,7 +5,7 @@ namespace ValueDriverDashboard.Commands
     using ValueDriverDashboard.Events;
     using ValueDriverDashboard.ViewModels;
 
-    public class UpdateDataInput :ICommand
+    public class UpdateDataInput : ICommand
     {
         /// <summary>
         /// Initializes a new instance of the UpdateCustomerCommand class.

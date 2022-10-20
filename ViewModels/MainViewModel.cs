@@ -30,11 +30,11 @@ namespace ValueDriverDashboard.ViewModels
             
             
         }
-        public void OnDataInputSubmitted(object source, DataInputEventArgs e)
+        public async void OnDataInputSubmitted(object source, DataInputEventArgs e)
         {
             //In the event of data inputs being submitted, update these things
-            _StockPriceViewModel.UpdateChart(e);
-            _TotalAssetsViewModel.UpdateChart(e);
+             _StockPriceViewModel.UpdateChart(e);
+             _TotalAssetsViewModel.UpdateChart(e);
 
             
         }

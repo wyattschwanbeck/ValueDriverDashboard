@@ -40,7 +40,7 @@ namespace ValueDriverDashboard.ViewModels
             }
 
         }
-        public void UpdateChart(DataInputEventArgs dataInput)
+        public async Task UpdateChart(DataInputEventArgs dataInput)
         {
             _AssetsSeries.UpdateChart(dataInput);
         }

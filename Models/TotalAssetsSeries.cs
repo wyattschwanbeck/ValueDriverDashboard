@@ -21,8 +21,6 @@ namespace ValueDriverDashboard.Models
         private List<string> _assetsChartLabels;
         private Func<double, string> _assetsYFormatter;
         public SeriesCollection AssetsSeriesCollection { get; }
-
-        private HistoricalDataProvider yahooDl;
         public Func<double, string> AssetsYFormatter { get { return _assetsYFormatter; } }
         //private HistoricalDataProvider yahooDl;
         public TotalAssetsSeries()
@@ -31,7 +29,6 @@ namespace ValueDriverDashboard.Models
             {
 
             };
-            //yahooDl = new HistoricalDataProvider();
             _assetsChartLabels = new List<string>();
             _assetsYFormatter = value => value > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : value > 999999?
             value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : value > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
@@ -52,11 +49,13 @@ namespace ValueDriverDashboard.Models
         public async void UpdateChart(DataInputEventArgs dataInput)
         {
             
-            DataPullHelper db = new DataPullHelper();
             FinancialStatement[] fs = await db.GetFinancialStatements(dataInput.Ticker, "10-Q", 1);
             AssetsSeriesCollection.Clear();
             AssetsChartLabels.Clear();
-            //await yahooDl.DownloadHistoricalDataAsync(dataInput.Ticker, dataInput.StartDate, dataInput.EndDate);
+
+            OnPropertyChanged("AssetsChartLabels");
+            OnPropertyChanged("AssetsSeriesCollection");
+
             bool newTicker = true;
             int latestIndex = 1;
             for (int i = 0; i < AssetsSeriesCollection.Count; i++)
@@ -70,7 +69,7 @@ namespace ValueDriverDashboard.Models
             
             if (newTicker)
             {
-                AssetsSeriesCollection.Add(new LineSeries
+                AssetsSeriesCollection.Add(new ColumnSeries
                 {
                     Title = dataInput.Ticker,
                     Values = new ChartValues<double>(),

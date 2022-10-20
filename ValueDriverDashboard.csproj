@@ -76,7 +76,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\GetStockPriceData.cs" />
     <Compile Include="Commands\UpdateDataInput.cs" />
     <Compile Include="Components\AssetsTotal.xaml.cs">
       <DependentUpon>AssetsTotal.xaml</DependentUpon>
