@@ -33,7 +33,7 @@ namespace ValueDriverDashboard.Models
         public async void UpdateChart(DataInputEventArgs dataInput)
         {
             int yearsPrior = (int)-((dataInput.StartDate - DateTime.Today).TotalDays / 365);
-            string reportType = yearsPrior > 3 ? "10-K" : "10-Q";
+            string reportType = yearsPrior > 4 ? "10-K" : "10-Q";
 
             FinancialStatement[] fs = await db.GetFinancialStatements(dataInput.Ticker, reportType, yearsPrior);
 
