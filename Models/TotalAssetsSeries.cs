@@ -16,82 +16,65 @@ using System.Globalization;
 
 namespace ValueDriverDashboard.Models
 {
-    public class TotalAssetsSeries : ViewModelBase
+    public class TotalAssetsSeries : ChartViewBase
     {
-        private List<string> _assetsChartLabels;
-        private Func<double, string> _assetsYFormatter;
-        public SeriesCollection AssetsSeriesCollection { get; }
-        public Func<double, string> AssetsYFormatter { get { return _assetsYFormatter; } }
         //private HistoricalDataProvider yahooDl;
+        private DataPullHelper db;
         public TotalAssetsSeries()
         {
-            AssetsSeriesCollection = new SeriesCollection
-            {
 
-            };
-            _assetsChartLabels = new List<string>();
-            _assetsYFormatter = value => value > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : value > 999999?
-            value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : value > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
+            
+            _YFormatter = value => value > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : value > 999999 ?
+                value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : value > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
             db = new DataPullHelper();
 
         }
 
-        public List<string> AssetsChartLabels
-        {
-            get
-            {
-                //
-                return _assetsChartLabels;
-            }
-        }
-        private DataPullHelper db; 
-
         public async void UpdateChart(DataInputEventArgs dataInput)
         {
-            
-            FinancialStatement[] fs = await db.GetFinancialStatements(dataInput.Ticker, "10-Q", 1);
-            AssetsSeriesCollection.Clear();
-            AssetsChartLabels.Clear();
+            int yearsPrior = (int)-((dataInput.StartDate - DateTime.Today).TotalDays / 365);
+            string reportType = yearsPrior > 3 ? "10-K" : "10-Q";
 
-            OnPropertyChanged("AssetsChartLabels");
-            OnPropertyChanged("AssetsSeriesCollection");
+            FinancialStatement[] fs = await db.GetFinancialStatements(dataInput.Ticker, reportType, yearsPrior);
 
-            bool newTicker = true;
-            int latestIndex = 1;
-            for (int i = 0; i < AssetsSeriesCollection.Count; i++)
+            _chartSeriesCollection.Clear();
+            _chartLabels.Clear();
+
+            OnPropertyChanged("ChartLabels");
+            OnPropertyChanged("SeriesCollection");
+
+
+
+
+            _chartSeriesCollection.Add(new ColumnSeries
             {
-                if (AssetsSeriesCollection[i].Title == dataInput.Ticker)
-                {
-                    newTicker = false;
-                    latestIndex = i;
-                }
-            }
-            
-            if (newTicker)
-            {
-                AssetsSeriesCollection.Add(new ColumnSeries
-                {
-                    Title = dataInput.Ticker,
-                    Values = new ChartValues<double>(),
-                    //DataLabels = true
+                Title = "Assets",
+                Values = new ChartValues<double>(),
+                //DataLabels = true
 
-                });
-                latestIndex = AssetsSeriesCollection.Count;
-            }
-            //Labels = new List<string>();
+            });
+
+            _chartSeriesCollection.Add(new ColumnSeries
+            {
+                Title = "Liabilities",
+                Values = new ChartValues<double>()
+            });
 
 
             for (int i = 0; i < fs.Length; i++)
             {
                 //this.AssetsSeriesCollection.Add(yahooDl.HistoricalData[i].Date.ToString("yy"));
-                AssetsSeriesCollection[latestIndex - 1].Values.Add((double)fs[i].Assets);
-                AssetsChartLabels.Add(((DateTime)fs[i].PeriodEnd).ToString("MM/yy"));
+                _chartSeriesCollection[0].Values.Add((double)fs[i].Assets);
+                _chartSeriesCollection[1].Values.Add((double)fs[i].Liabilities);
+                _chartLabels.Add(((DateTime)fs[i].PeriodEnd).ToString("MM/yy"));
             }
             OnPropertyChanged("AssetsChartLabels");
             OnPropertyChanged("AssetsSeriesCollection");
         }
+
+
+
+
+
     }
-
-
-
 }

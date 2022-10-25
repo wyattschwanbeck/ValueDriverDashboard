@@ -85,6 +85,7 @@
     <Compile Include="Models\TotalAssetsSeries.cs" />
     <Compile Include="Models\StockPriceSeries.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
+    <Compile Include="Models\ChartSeriesBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\TotalAssetsViewModel.cs" />
     <Compile Include="ViewModels\StockPriceViewModel.cs" />
@@ -147,6 +148,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EdgarCacheFramework">
+      <Version>1.0.1</Version>
+    </PackageReference>
     <PackageReference Include="LiveCharts.Wpf">
       <Version>0.9.7</Version>
     </PackageReference>
@@ -164,12 +168,6 @@
     <PackageReference Include="Yahoo.Finance">
       <Version>4.3.0</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EdgarCacheFramework\EdgarCacheFramework.csproj">
-      <Project>{5e031bdc-2708-41b9-a837-fcfc6a8ec7ce}</Project>
-      <Name>EdgarCacheFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

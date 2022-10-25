@@ -5,8 +5,6 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValueDriverDashboard", "ValueDriverDashboard.csproj", "{39344A15-D67A-46E7-9644-838A1C78DD42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgarCacheFramework", "..\EdgarCacheFramework\EdgarCacheFramework.csproj", "{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,14 +21,6 @@ Global
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|Any CPU.Build.0 = Debug|x64
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.ActiveCfg = Debug|x64
 		{39344A15-D67A-46E7-9644-838A1C78DD42}.Release|x64.Build.0 = Debug|x64
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Debug|x64.Build.0 = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|x64.ActiveCfg = Release|Any CPU
-		{5E031BDC-2708-41B9-A837-FCFC6A8EC7CE}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
