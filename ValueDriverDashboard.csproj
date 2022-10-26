@@ -77,16 +77,21 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\UpdateDataInput.cs" />
+    <Compile Include="Components\RevenueTotal.xaml.cs">
+      <DependentUpon>RevenueTotal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\AssetsTotal.xaml.cs">
       <DependentUpon>AssetsTotal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Events\DataUpdateEvent.cs" />
     <Compile Include="Models\DataInput.cs" />
+    <Compile Include="Models\TotalRevenueSeries.cs" />
     <Compile Include="Models\TotalAssetsSeries.cs" />
     <Compile Include="Models\StockPriceSeries.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Models\ChartSeriesBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\TotalRevenueViewModel.cs" />
     <Compile Include="ViewModels\TotalAssetsViewModel.cs" />
     <Compile Include="ViewModels\StockPriceViewModel.cs" />
     <Compile Include="ViewModels\DataInnputModelView.cs" />
@@ -96,6 +101,10 @@
     <Compile Include="Components\StockPriceDash.xaml.cs">
       <DependentUpon>StockPriceDash.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\RevenueTotal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Components\AssetsTotal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

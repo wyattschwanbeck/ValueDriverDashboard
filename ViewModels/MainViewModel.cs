@@ -19,12 +19,14 @@ namespace ValueDriverDashboard.ViewModels
         private DataInputViewModel _DataInput;
         private StockPriceViewModel _StockPriceViewModel;
         private TotalAssetsViewModel _TotalAssetsViewModel;
+        private TotalRevenueViewModel _TotalRevenueViewModel;
 
-        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView)
+        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView, TotalRevenueViewModel revenueView)
         {
             _DataInput = dataInput;
             _StockPriceViewModel = stockPriceSeriesView;
             _TotalAssetsViewModel = assetsView;
+            _TotalRevenueViewModel = revenueView;
             //Subscribe to data input submission events
             _DataInput.DataInputSubmitted += OnDataInputSubmitted;
             
@@ -33,14 +35,14 @@ namespace ValueDriverDashboard.ViewModels
         public async void OnDataInputSubmitted(object source, DataInputEventArgs e)
         {
             //In the event of data inputs being submitted, update these things
-             _StockPriceViewModel.UpdateChart(e);
-             _TotalAssetsViewModel.UpdateChart(e);
-
+             await _StockPriceViewModel.UpdateChart(e);
+             await _TotalAssetsViewModel.UpdateChart(e);
+            await _TotalRevenueViewModel.UpdateChart(e);
             
         }
 
-        public DataInputViewModel DataInput { get { return _DataInput; } }
-        public StockPriceViewModel StockPriceSeries { get { return _StockPriceViewModel; } }
+        //public DataInputViewModel DataInput { get { return _DataInput; } }
+        //public StockPriceViewModel StockPriceSeries { get { return _StockPriceViewModel; } }
 
 
         public bool CanUpdate

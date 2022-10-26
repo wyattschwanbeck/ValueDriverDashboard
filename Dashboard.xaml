@@ -24,5 +24,6 @@
         <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ShowsPreview="True" Height="5"/>
         <components:DataInputControl DataContext="{Binding DataInputViewModel}" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="dataSelector" />
         <components:AssetsTotal DataContext="{Binding TotalAssetsViewModel}" Grid.Row="0" Grid.Column="2" x:Name="totalAssetsChart" />
+        <components:RevenueTotal DataContext="{Binding TotalRevenueViewModel}" Grid.Row="2" Grid.Column="2" x:Name="totalRevenueChart" />
     </Grid>
 </Window>

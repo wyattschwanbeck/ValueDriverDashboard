@@ -5,24 +5,25 @@ using ValueDriverDashboard.Events;
 using EdgarCacheFramework;
 using Xbrl.FinancialStatement;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace ValueDriverDashboard.Models
 {
-    public class TotalAssetsSeries : ChartViewBase
+    public class TotalRevenueSeries : ChartViewBase
     {
         //private HistoricalDataProvider yahooDl;
         private DataPullHelper db;
-        public TotalAssetsSeries()
+        public TotalRevenueSeries()
         {
 
             
-            _YFormatter = value => value > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : value > 999999 ?
-                value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : value > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
+            _YFormatter = value => Math.Abs(value) > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : Math.Abs(value) > 999999 ?
+                value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : Math.Abs(value) > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
             db = new DataPullHelper();
 
         }
 
-        public async void UpdateChart(DataInputEventArgs dataInput)
+        public async Task UpdateChart(DataInputEventArgs dataInput)
         {
             int yearsPrior = (int)-((dataInput.StartDate - DateTime.Today).TotalDays / 365);
             string reportType = yearsPrior > 4 ? "10-K" : "10-Q";
@@ -38,33 +39,34 @@ namespace ValueDriverDashboard.Models
 
 
 
-            _chartSeriesCollection.Add(new ColumnSeries
+            _chartSeriesCollection.Add(new LineSeries
             {
-                Title = "Assets",
+                Title = "Revenue",
                 Values = new ChartValues<double>(),
                 //DataLabels = true
 
             });
-
-            _chartSeriesCollection.Add(new ColumnSeries
+            
+            _chartSeriesCollection.Add(new LineSeries
             {
-                Title = "Liabilities",
+                Title = "NetIncome",
                 Values = new ChartValues<double>()
             });
 
 
             for (int i = 0; i < fs.Length; i++)
             {
-                if ((fs[i].PeriodStart != null && fs[i].PeriodEnd != null) ?
-                    fs[i].PeriodEnd >= dataInput.StartDate && fs[i].PeriodEnd <= dataInput.EndDate : false)
+                if((fs[i].PeriodStart!=null && fs[i].PeriodEnd!=null)? 
+                    fs[i].PeriodEnd>=dataInput.StartDate && fs[i].PeriodEnd <= dataInput.EndDate:false)
                 {
-                    _chartSeriesCollection[0].Values.Add((double)fs[i].Assets);
-                    _chartSeriesCollection[1].Values.Add((double)fs[i].Liabilities);
+                    _chartSeriesCollection[0].Values.Add((double)fs[i].Revenue);
+                    _chartSeriesCollection[1].Values.Add((double)fs[i].NetIncome);
                     _chartLabels.Add(((DateTime)fs[i].PeriodEnd).ToString("MM/yy"));
                 }
+
             }
-            OnPropertyChanged("AssetsChartLabels");
-            OnPropertyChanged("AssetsSeriesCollection");
+            OnPropertyChanged("ChartLabels");
+            OnPropertyChanged("SeriesCollection");
         }
 
 
