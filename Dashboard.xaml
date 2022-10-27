@@ -20,6 +20,7 @@
         </Grid.RowDefinitions>
 
         <components:StockDashboardView DataContext="{Binding StockPriceViewModel}" Grid.Row="0" Grid.Column="0" x:Name="stockPriceChart" />
+        <components:StockMetricView DataContext="{Binding StockMetricViewModel}" Grid.Row="2" Grid.Column="0" x:Name="stockMetricChart" />
         <GridSplitter Grid.Column="1" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowsPreview="True" Width="5"/>
         <GridSplitter Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Center" ShowsPreview="True" Height="5"/>
         <components:DataInputControl DataContext="{Binding DataInputViewModel}" Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" x:Name="dataSelector" />

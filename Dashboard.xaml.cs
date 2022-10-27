@@ -24,6 +24,7 @@ namespace ValueDriverDashboard
         public DataInputViewModel DataInputViewModel { get; set; }
         public TotalAssetsViewModel TotalAssetsViewModel { get; set; }
         public TotalRevenueViewModel TotalRevenueViewModel { get; set; }
+        public StockMetricViewModel StockMetricViewModel { get; set; }
 
         public Dashboard()
         {
@@ -33,15 +34,16 @@ namespace ValueDriverDashboard
             DataInputViewModel = new DataInputViewModel();
             TotalAssetsViewModel = new TotalAssetsViewModel();
             TotalRevenueViewModel = new TotalRevenueViewModel();
+            StockMetricViewModel = new StockMetricViewModel();
 
             this.stockPriceChart.DataContext = StockPriceViewModel;
             this.dataSelector.DataContext = DataInputViewModel;
             this.totalAssetsChart.DataContext = TotalAssetsViewModel;
             this.totalRevenueChart.DataContext = TotalRevenueViewModel;
-
+            this.stockMetricChart.DataContext = StockMetricViewModel;
 
             DataContext = new MainViewModel(DataInputViewModel, StockPriceViewModel, 
-                TotalAssetsViewModel, TotalRevenueViewModel);
+                TotalAssetsViewModel, TotalRevenueViewModel, StockMetricViewModel);
             
             
         }

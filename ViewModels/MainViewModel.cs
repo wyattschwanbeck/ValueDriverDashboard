@@ -20,13 +20,15 @@ namespace ValueDriverDashboard.ViewModels
         private StockPriceViewModel _StockPriceViewModel;
         private TotalAssetsViewModel _TotalAssetsViewModel;
         private TotalRevenueViewModel _TotalRevenueViewModel;
+        private StockMetricViewModel _StockMetricViewModel;
 
-        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView, TotalRevenueViewModel revenueView)
+        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView, TotalRevenueViewModel revenueView, StockMetricViewModel stockMetricView)
         {
             _DataInput = dataInput;
             _StockPriceViewModel = stockPriceSeriesView;
             _TotalAssetsViewModel = assetsView;
             _TotalRevenueViewModel = revenueView;
+            _StockMetricViewModel = stockMetricView;
             //Subscribe to data input submission events
             _DataInput.DataInputSubmitted += OnDataInputSubmitted;
             
@@ -38,7 +40,7 @@ namespace ValueDriverDashboard.ViewModels
              await _StockPriceViewModel.UpdateChart(e);
              await _TotalAssetsViewModel.UpdateChart(e);
             await _TotalRevenueViewModel.UpdateChart(e);
-            
+            await _StockMetricViewModel.UpdateChart(e);
         }
 
         //public DataInputViewModel DataInput { get { return _DataInput; } }
