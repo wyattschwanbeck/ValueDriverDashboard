@@ -3,15 +3,8 @@ Planning to implement value driver calcs originally coded in: (https://github.co
 through use of: https://github.com/TimHanewich/SecuritiesExchangeCommission.Edgar
 
 
-TODO: 
-Add in overall dashboard selector in which graphs can be viewed dynamically
 
-Data download caching db
-  -Mitigate having to download ticker data multiple times with previously downloaded records linked to database
+<a href="https://imgur.com/Dn8v0gc"><img src="https://i.imgur.com/Dn8v0gc.png" title="source: imgur.com" /></a>
 
-Stock dashboard view -
-  -Implement date range in data pulls
-  -Implement way to hide and show stock data in series
-  -Secondary axis option
 
 
