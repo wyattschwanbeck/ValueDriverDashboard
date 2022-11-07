@@ -19,12 +19,16 @@ namespace ValueDriverDashboard.ViewModels
         private DataInputViewModel _DataInput;
         private StockPriceViewModel _StockPriceViewModel;
         private TotalAssetsViewModel _TotalAssetsViewModel;
+        private TotalRevenueViewModel _TotalRevenueViewModel;
+        private StockMetricViewModel _StockMetricViewModel;
 
-        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView)
+        public MainViewModel(DataInputViewModel dataInput, StockPriceViewModel stockPriceSeriesView, TotalAssetsViewModel assetsView, TotalRevenueViewModel revenueView, StockMetricViewModel stockMetricView)
         {
             _DataInput = dataInput;
             _StockPriceViewModel = stockPriceSeriesView;
             _TotalAssetsViewModel = assetsView;
+            _TotalRevenueViewModel = revenueView;
+            _StockMetricViewModel = stockMetricView;
             //Subscribe to data input submission events
             _DataInput.DataInputSubmitted += OnDataInputSubmitted;
             
@@ -33,14 +37,14 @@ namespace ValueDriverDashboard.ViewModels
         public async void OnDataInputSubmitted(object source, DataInputEventArgs e)
         {
             //In the event of data inputs being submitted, update these things
-             _StockPriceViewModel.UpdateChart(e);
-             _TotalAssetsViewModel.UpdateChart(e);
-
-            
+             await _StockPriceViewModel.UpdateChart(e);
+             await _TotalAssetsViewModel.UpdateChart(e);
+            await _TotalRevenueViewModel.UpdateChart(e);
+            await _StockMetricViewModel.UpdateChart(e);
         }
 
-        public DataInputViewModel DataInput { get { return _DataInput; } }
-        public StockPriceViewModel StockPriceSeries { get { return _StockPriceViewModel; } }
+        //public DataInputViewModel DataInput { get { return _DataInput; } }
+        //public StockPriceViewModel StockPriceSeries { get { return _StockPriceViewModel; } }
 
 
         public bool CanUpdate

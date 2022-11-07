@@ -77,15 +77,26 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\UpdateDataInput.cs" />
+    <Compile Include="Components\RevenueTotal.xaml.cs">
+      <DependentUpon>RevenueTotal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\AssetsTotal.xaml.cs">
       <DependentUpon>AssetsTotal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\StockMetrics.xaml.cs">
+      <DependentUpon>StockMetrics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Events\DataUpdateEvent.cs" />
     <Compile Include="Models\DataInput.cs" />
+    <Compile Include="Models\StockMetricsSeries.cs" />
+    <Compile Include="Models\TotalRevenueSeries.cs" />
     <Compile Include="Models\TotalAssetsSeries.cs" />
     <Compile Include="Models\StockPriceSeries.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
+    <Compile Include="Models\ChartSeriesBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\StockMetricViewModel.cs" />
+    <Compile Include="ViewModels\TotalRevenueViewModel.cs" />
     <Compile Include="ViewModels\TotalAssetsViewModel.cs" />
     <Compile Include="ViewModels\StockPriceViewModel.cs" />
     <Compile Include="ViewModels\DataInnputModelView.cs" />
@@ -95,7 +106,15 @@
     <Compile Include="Components\StockPriceDash.xaml.cs">
       <DependentUpon>StockPriceDash.xaml</DependentUpon>
     </Compile>
+    <Page Include="Components\RevenueTotal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Components\AssetsTotal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\StockMetrics.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -147,6 +166,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="EdgarCacheFramework">
+      <Version>2.0.0</Version>
+    </PackageReference>
     <PackageReference Include="LiveCharts.Wpf">
       <Version>0.9.7</Version>
     </PackageReference>
@@ -158,18 +180,12 @@
     <PackageReference Include="NodaTime">
       <Version>3.1.2</Version>
     </PackageReference>
-    <PackageReference Include="Xbrl">
-      <Version>5.2.0</Version>
+    <PackageReference Include="XbrlW">
+      <Version>6.1.0</Version>
     </PackageReference>
     <PackageReference Include="Yahoo.Finance">
       <Version>4.3.0</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EdgarCacheFramework\EdgarCacheFramework.csproj">
-      <Project>{5e031bdc-2708-41b9-a837-fcfc6a8ec7ce}</Project>
-      <Name>EdgarCacheFramework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
