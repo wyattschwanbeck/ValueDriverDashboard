@@ -13,7 +13,7 @@ namespace ValueDriverDashboard.Models
 
         public StockPriceSeries()
         {
-            _dataPullHelper = new DataPullHelper();
+            _dataPullHelper = new DataPullHelper("WyattSchwanbeck");
             this.YFormatter = value => value.ToString("C");
         }
 

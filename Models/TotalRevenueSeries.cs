@@ -19,7 +19,7 @@ namespace ValueDriverDashboard.Models
             
             _YFormatter = value => Math.Abs(value) > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : Math.Abs(value) > 999999 ?
                 value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : Math.Abs(value) > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
-            db = new DataPullHelper();
+            db = new DataPullHelper("WyattSchwanbeck");
 
         }
 

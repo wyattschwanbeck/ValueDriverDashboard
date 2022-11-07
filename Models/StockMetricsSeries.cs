@@ -24,7 +24,7 @@ namespace ValueDriverDashboard.Models
             
             _YFormatter = value => Math.Abs(value) > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : Math.Abs(value) > 999999 ?
                 value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : Math.Abs(value) > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
-            db = new DataPullHelper();
+            db = new DataPullHelper("WyattSchwanbeck");
             _axisYCollection = new AxesCollection
             {
                 new Axis { Title = "Price to Earnings", Foreground = Brushes.Gray , LabelFormatter = _YFormatter},
@@ -36,8 +36,8 @@ namespace ValueDriverDashboard.Models
         {
             
             int yearsPrior = (int)-((dataInput.StartDate - DateTime.Today).TotalDays / 365);
-            //string reportType = yearsPrior > 4 ? "10-K" : "10-Q";
-            string reportType = "10-K";
+            string reportType = yearsPrior > 4 ? "10-K" : "10-Q";
+            //string reportType = "10-K";
             FinancialStatement[] fs = await db.GetFinancialStatements(dataInput.Ticker, reportType, yearsPrior);
             
             _chartSeriesCollection.Clear();
@@ -89,29 +89,40 @@ namespace ValueDriverDashboard.Models
                 }
                 fsInstance = fs[fsI];
                */
-                historicalStockPrice = DbHelper.GetStockData(dataInput.Ticker, fs[i].PeriodStart.Value, fs[i].PeriodEnd.Value);
-                DateTime stockDate = DateTime.FromFileTimeUtc(historicalStockPrice[0].Date);
-                if (fs[i].DividendsPaid == null)
-                    fs[i].DividendsPaid = 0;
+                if (fs[i].PeriodEnd > dataInput.StartDate)
+                {
 
-                    dividendsPerShare = (double)(fs[i].DividendsPaid / fs[i].CommonStockSharesOutstanding);
-                        
-                
-                    eps = (double)(fs[i].NetIncome / fs[i].CommonStockSharesOutstanding);
+
+                    historicalStockPrice = DbHelper.GetStockData(dataInput.Ticker, fs[i].PeriodStart.Value, fs[i].PeriodEnd.Value);
+                    //DateTime stockDate = DateTime.FromFileTimeUtc(historicalStockPrice[0].Date);
+                    if (fs[i].DividendsPaid == null)
+                        fs[i].DividendsPaid = 0;
+                    if (fs[i].PreferredDividends == null)
+                        fs[i].PreferredDividends = 0;
+                    if (fs[i].CommonStockSharesOutstanding == null)
+                        fs[i].CommonStockSharesOutstanding = 1;
+                    
+                    dividendsPerShare = (double)((fs[i].DividendsPaid) / fs[i].CommonStockSharesOutstanding);
+                    if(fs[i].EarningsPerShareDiluted!=null)
+                    eps = (double)fs[i].EarningsPerShareDiluted;
+                    else
+                    {
+                        eps = (double)((fs[i].NetIncome - fs[i].PreferredDividends) / fs[i].CommonStockSharesOutstanding);
+                    }
+                    
                     _chartSeriesCollection[0].Values.Add(eps);
                     _chartSeriesCollection[1].Values.Add(dividendsPerShare);
-                //_chartSeriesCollection[0].Values.Add(0.0d);
-                //_chartSeriesCollection[1].Values.Add(0.0d);
-                float averageStockPrice = 0;
-                foreach (StockPriceInstance record in historicalStockPrice)
-                    averageStockPrice +=record.AdjustedClose;
 
-                averageStockPrice = averageStockPrice / historicalStockPrice.Length;
-                    _chartSeriesCollection[2].Values.Add((double)averageStockPrice/ eps);
+                    float averageStockPrice = 0;
+                    foreach (StockPriceInstance record in historicalStockPrice)
+                        averageStockPrice += record.AdjustedClose;
+
+                    averageStockPrice = averageStockPrice / historicalStockPrice.Length;
+                    _chartSeriesCollection[2].Values.Add((double)averageStockPrice / eps);
                     //_chartSeriesCollection[2].Values.Add((double)historicalStockPrice[historicalStockPrice.Length-1].AdjustedClose / eps);
                     //_chartLabels.Add(fs[i].PeriodStart.Value.ToString("MM/yy"));
                     _chartLabels.Add(fs[i].PeriodEnd.Value.ToString("MM/yy"));
-
+                }
            
             }
             OnPropertyChanged("ChartLabels");

@@ -18,7 +18,7 @@ namespace ValueDriverDashboard.Models
             
             _YFormatter = value => value > 999999999 ? value.ToString("$#,##0,,,.##B", CultureInfo.InvariantCulture) : value > 999999 ?
                 value.ToString("$#,##0,,.##M", CultureInfo.InvariantCulture) : value > 999 ? value.ToString("$#,##0,.#K", CultureInfo.InvariantCulture) : value.ToString("C");
-            db = new DataPullHelper();
+            db = new DataPullHelper("WyattSchwanbeck");
 
         }
 
@@ -38,15 +38,15 @@ namespace ValueDriverDashboard.Models
 
 
 
-            _chartSeriesCollection.Add(new ColumnSeries
+            _chartSeriesCollection.Add(new StackedColumnSeries
             {
-                Title = "Assets",
+                Title = "Equity",
                 Values = new ChartValues<double>(),
                 //DataLabels = true
 
             });
 
-            _chartSeriesCollection.Add(new ColumnSeries
+            _chartSeriesCollection.Add(new StackedColumnSeries
             {
                 Title = "Liabilities",
                 Values = new ChartValues<double>()
@@ -58,7 +58,7 @@ namespace ValueDriverDashboard.Models
                 if ((fs[i].PeriodStart != null && fs[i].PeriodEnd != null) ?
                     fs[i].PeriodEnd >= dataInput.StartDate && fs[i].PeriodEnd <= dataInput.EndDate : false)
                 {
-                    _chartSeriesCollection[0].Values.Add((double)fs[i].Assets);
+                    _chartSeriesCollection[0].Values.Add((double)fs[i].Equity);
                     _chartSeriesCollection[1].Values.Add((double)fs[i].Liabilities);
                     _chartLabels.Add(((DateTime)fs[i].PeriodEnd).ToString("MM/yy"));
                 }
